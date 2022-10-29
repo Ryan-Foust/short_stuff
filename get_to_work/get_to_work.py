@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from todoist_api_python.api import TodoistAPI
 import subprocess
+import webbrowser
 
 debug = True
 
@@ -17,6 +18,7 @@ def main():
         print("Made example task")
         api.add_task(content="Example", project_id=2291523269)
     subprocess.Popen('/snap/bin/todoist')
+    webbrowser.open("https://calendar.google.com/calendar/u/0/r")
 
 
 if __name__ == '__main__':
