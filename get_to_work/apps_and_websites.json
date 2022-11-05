@@ -12,6 +12,12 @@
     "path": null
   },
   {
+    "name": "TCM Security",
+    "is_website": true,
+    "url": "https://academy.tcm-sec.com/",
+    "path": null
+  },
+  {
     "name": "ToDoIst",
     "is_website": false,
     "url": null,
