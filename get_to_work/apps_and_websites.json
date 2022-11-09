@@ -28,5 +28,11 @@
     "is_website": false,
     "url": null,
     "path": "/snap/bin/pycharm-community"
+  },
+  {
+    "name": "Productivity playlist (YT Music)",
+    "is_website": true,
+    "url": "https://music.youtube.com/playlist?list=PLc16QuSratQItBAZdOFlWfF4JKlf_qBSx",
+    "path": null
   }
 ]
