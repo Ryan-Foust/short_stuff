@@ -2,18 +2,26 @@
 from todoist_api_python.api import TodoistAPI
 from tkinter import *
 import json
+import sys
 import subprocess
 import webbrowser
 
 
-def open_website():
+def modify_ctrl_vars():
+    # modify control variables
+    print("modify_ctrl_vars called")
+
+
+def open_website(url):
     # webbrowser.open([url])
     print("open_website called")
+    print("url passed:", url)
 
 
-def open_app():
+def open_app(path):
     # subprocess.Popen([path])
     print("open_app called")
+    print("path passed:", path)
 
 
 debug = False
@@ -22,17 +30,18 @@ stage.title("Get to Work Shortcut")
 # stage.geometry("300x300+300+300")
 
 
-def main():
+def main(argv):
     if debug:
         print("Starting main")
+        print("args received:", argv)
 
     # grab token to access task manager app
-    with open('/home/ryan-foust/Desktop/prog/PycharmProjects/short_stuff/get_to_work/_todoist_token.txt', "r") as TDI_Token:
+    with open(argv[1]) as TDI_Token:
         token = TDI_Token.read()
         api = TodoistAPI(token)
 
     # open and convert json to python types
-    a_n_w_temp = open("/home/ryan-foust/Desktop/prog/PycharmProjects/short_stuff/get_to_work/apps_and_websites.json")
+    a_n_w_temp = open(argv[2])
     to_load = a_n_w_temp.read()
     apps_and_websites = json.loads(to_load)
 
@@ -47,13 +56,9 @@ def main():
         if debug:
             print(app['name'])
 
-        # make each checkbox, depending on whether the
-        if app['is_website']:
-            app_check_button = Checkbutton(stage, text=app['name'], command=open_website, padx=10, pady=5)
-            elements.append(app_check_button)
-        else:
-            app_check_button = Checkbutton(stage, text=app['name'], command=open_app, padx=10, pady=5)
-            elements.append(app_check_button)
+        # make each checkbox, depending on whether the option points to website, or app
+        app_check_button = Checkbutton(stage, text=app['name'], command=modify_ctrl_vars, padx=10, pady=5)
+        elements.append(app_check_button)
 
     for elem in elements:
         elem.pack()
@@ -71,4 +76,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)
